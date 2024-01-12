@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                script{
+                    try{
+                        sh "echo 'Building python'"
+                        sh "'In Progress'"
+                    }catch (Exception e) {
+                        // Catch block will be executed if there is an exception
+                        currentBuild.result = 'FAILURE'
+                        echo "Caught an exception: ${e.message}"
+                    }finally{
+                        sh "echo 'Build complete'"   
+                    }
+                }
+            }
+
+            post {
+                success {
+                    sh "echo 'Build success'"
+                }
+                failure {
+                    sh "echo 'Job failed'"
+                }
+            }
+        }
+    }
+}
