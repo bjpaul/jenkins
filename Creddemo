@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('sshUserPrivateKey') {
+            steps {
+                script{
+                    withCredentials(bindings: [sshUserPrivateKey(credentialsId: '0bff8ed7-ff63-4aa6-98ac-e07086913a88', \
+                                             keyFileVariable: 'SSH_KEY', \
+                                             passphraseVariable: '', \
+                                             usernameVariable: 'USER')]) {
+                      sh 'echo "USER=${USER}"'
+                      sh 'echo "SSH_KEY=${SSH_KEY}"'
+                    }
+                }
+            }
+        }
+        stage('userpasswd'){
+            environment{
+                CRED = credentials("bjpaulcred")
+            }
+            steps{
+                sh 'echo "USER=${CRED_USR}"'
+                sh 'echo "PASSWORD=${CRED_PSW}"'
+            }
+            
+        }
+    }
+}
