@@ -12,11 +12,6 @@ pipeline {
     }
 
     stages {
-        stage('Check installed libraries') {
-            steps {
-                sh 'ls -al "${HOME}/.local/bin"'
-            }
-        }
         stage('Python Init') {
             steps {
                 sh 'pip install numpy '
