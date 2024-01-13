@@ -3,7 +3,7 @@ pipeline{
         dockerfile{
             dir 'build'
             filename 'DockerKanikoExecutor'
-            additionalBuildArgs  '--build-arg sleeptime=30s'
+            additionalBuildArgs  '--build-arg sleeptime=30m'
         }
     }
     stages{
