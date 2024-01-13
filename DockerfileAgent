@@ -1,0 +1,31 @@
+pipeline {
+    environment {
+        // this variable is required, otherwise pip will try to install in root directory
+        HOME = "${env.WORKSPACE}"
+    }
+    agent{
+        // dockerfile true
+        dockerfile {
+          filename DockerfileAgent
+          dir build
+        }
+    }
+
+    stages {
+        stage('Check installed libraries') {
+            steps {
+                sh 'ls -al "${HOME}/.local/bin"'
+            }
+        }
+        stage('Python Init') {
+            steps {
+                sh 'pip install numpy '
+            }
+        }
+        stage('Check if requests module exists') {
+            steps {
+                sh "python -c 'import numpy'"
+            }
+        }
+    }
+}
