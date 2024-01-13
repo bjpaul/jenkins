@@ -5,4 +5,4 @@ ARG sleeptime=10s
 ENV SLEEP_TIME=$sleeptime
 
 ENTRYPOINT ["sleep"]
-CMD [$SLEEP_TIME]
+CMD ["$SLEEP_TIME"]
