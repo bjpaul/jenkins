@@ -1,8 +1,8 @@
 pipeline{
     agent{
         docker{
-            image 'gcr.io/kaniko-project/executor:v1.6.0-debug'
-            args  '--entrypoint sleep123'
+            image 'gcr.io/kaniko-project/executor:debug'
+            args  '-it --entrypoint /busybox/cat'
         }
     }
     stages{
