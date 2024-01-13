@@ -1,9 +1,8 @@
 pipeline{
     agent{
-        dockerfile{
-            dir 'build'
-            filename 'DockerKanikoExecutor'
-            additionalBuildArgs  '--build-arg sleeptime=30m'
+        docker{
+            image 'gcr.io/kaniko-project/executor:debug'
+            args  '--entrypoint sleep'
         }
     }
     stages{
