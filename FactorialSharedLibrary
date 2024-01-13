@@ -1,3 +1,5 @@
 @Library("jenkins-ci") _
 
-pythonExecute()
+pythonExecute(
+  function: 'factorial.py'
+)
