@@ -1,0 +1,16 @@
+pipeline{
+    agent{
+        dockerfile{
+            dir 'build'
+            filename 'DockerKanikoExecutor'
+            additionalBuildArgs  '--build-arg sleeptime=30s'
+        }
+    }
+    stages{
+        stage("Init"){
+            steps{
+                sh "cat /kaniko/executor"
+            }
+        }
+    }
+}
