@@ -1,0 +1,33 @@
+pipeline {
+    environment {
+        // this variable is required, otherwise pip will try to install in root directory
+        HOME = "${env.WORKSPACE}"
+    }
+    agent{
+        docker{
+            image 'python:3'
+            // Run the container on the node specified at the
+            // top-level of the Pipeline, in the same workspace,
+            // rather than on a new node entirely:
+            reuseNode true
+        }
+    }
+
+    stages {
+        stage('Check installed libraries') {
+            steps {
+                sh 'ls -al "${HOME}/.local/bin"'
+            }
+        }
+        stage('Python Init') {
+            steps {
+                sh 'pip install numpy '
+            }
+        }
+        stage('Check if requests module exists') {
+            steps {
+                sh "python -c 'import numpy'"
+            }
+        }
+    }
+}
