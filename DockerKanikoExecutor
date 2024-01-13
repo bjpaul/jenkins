@@ -8,6 +8,11 @@ pipeline{
     stages{
         stage("Init"){
             steps{
+                sh "30s"
+            }
+        }
+        stage("Next"){
+            steps{
                 sh "cat /kaniko/executor"
             }
         }
