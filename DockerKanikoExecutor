@@ -11,10 +11,5 @@ pipeline{
                 sh "30s"
             }
         }
-        stage("Next"){
-            steps{
-                sh "cat /kaniko/executor"
-            }
-        }
     }
 }
