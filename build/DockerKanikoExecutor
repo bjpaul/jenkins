@@ -1,6 +1,8 @@
 FROM gcr.io/kaniko-project/executor:debug
 
-ARG sleeptime 10s
+ARG sleeptime=10s
+
+ENV SLEEP_TIME=$sleeptime
 
 ENTRYPOINT ["sleep"]
-CMD [sleeptime]
+CMD [$SLEEP_TIME]
