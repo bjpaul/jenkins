@@ -19,12 +19,17 @@ pipeline {
             }
 
             post {
+                // always, unstable, success, failure, and changed. 
                 success {
                     sh "echo 'Build success'"
                 }
                 failure {
                     sh "echo 'Job failed'"
                 }
+                always{
+                    echo "Execute always"
+                }
+                
             }
         }
     }
