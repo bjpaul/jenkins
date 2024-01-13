@@ -6,8 +6,8 @@ pipeline {
     agent{
         // dockerfile true
         dockerfile {
-          filename DockerfileAgent
-          dir build
+          filename 'DockerfileAgent'
+          dir 'build'
         }
     }
 
